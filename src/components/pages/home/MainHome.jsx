@@ -1,12 +1,19 @@
 "use client";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import TasksList from "./TasksList";
 import Menu from "./Menu";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 const MainHome = () => {
-  const [showCompleted, setShowCompleted] = useState(true);
-  const [showDescription, setShowDescription] = useState(true);
+  const [showCompleted, setShowCompleted] = useLocalStorage(
+    "showCompleted",
+    true
+  );
+  const [showDescription, setShowDescription] = useLocalStorage(
+    "showDescription",
+    true
+  );
   const tasks = useSelector((state) => state.tasks);
 
   return (
@@ -17,7 +24,11 @@ const MainHome = () => {
       <h2 className="sm:text-lg opacity-90 mt-2 mb-5 sm:mb-8">
         here&apos;s what you need to do
       </h2>
-      <TasksList tasks={tasks.tasks} showDescription={showDescription} />
+      <TasksList
+        tasks={tasks.tasks}
+        showDescription={showDescription}
+        showCompleted={showCompleted}
+      />
       <Menu
         showCompleted={showCompleted}
         setShowCompleted={setShowCompleted}

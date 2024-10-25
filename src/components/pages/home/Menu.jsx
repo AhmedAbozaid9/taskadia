@@ -24,16 +24,16 @@ const Menu = ({
       <DropdownMenu aria-label="Static Actions">
         <DropdownItem key="showCompleted">
           <button
-            onClick={() => setShowCompleted(!showCompleted)}
+            onClick={() => setShowCompleted((prev) => !prev)}
             className="flex items-center gap-2"
           >
             <CheckCheck size={18} />
-            <span>{showCompleted ? "Hide Completed" : "Show Completed"}</span>
+            <span>{showCompleted ? "Show Completed" : "Hide Completed"}</span>
           </button>
         </DropdownItem>
         <DropdownItem key="showDescription">
           <button
-            onClick={() => setShowDescription(!showDescription)}
+            onClick={() => setShowDescription((prev) => !prev)}
             className="flex items-center gap-2"
           >
             <Text size={18} />
@@ -44,10 +44,7 @@ const Menu = ({
         </DropdownItem>
         <DropdownItem key="edit">
           {" "}
-          <button
-            onClick={() => setShowDescription(!showDescription)}
-            className="flex items-center gap-2"
-          >
+          <button onClick={() => {}} className="flex items-center gap-2">
             {loggedIn ? (
               <span className="flex items-center gap-2 text-red-500">
                 <LogOut size={18} />

@@ -2,11 +2,12 @@ import React from "react";
 import Task from "./Task";
 
 const TasksList = ({ tasks, showCompleted, showDescription }) => {
+  console.log(showCompleted);
   const filteredTasks = tasks.filter((task) => {
-    if (!showCompleted && task.status === "done") {
+    if (showCompleted && task.state === "done") {
       return false;
     }
-    return !task.completed;
+    return true;
   });
   return (
     <div className="flex flex-col gap-5">
