@@ -3,50 +3,57 @@
 @tailwind utilities;
 
 :root {
-    color-scheme: dark;
+  color-scheme: dark;
 }
 
-
 body {
-    background: #1f1e25;
-    color: #ffffff;
+  background: #1f1e25;
+  color: #ffffff;
 }
 
 @layer utilities {
-    .text-balance {
-        text-wrap: balance;
-    }
+  .text-balance {
+    text-wrap: balance;
+  }
 }
-
 @layer base {
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
-
 
 @media only screen and (min-width: 768px) {
-    /* ===== Scrollbar CSS ===== */
-    /* Firefox */
-    * {
-        scrollbar-width: auto;
-        scrollbar-color: #151419 #2f2e35;
-    }
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #151419 #2f2e35;
+  }
 
-    /* Chrome, Edge, and Safari */
-    *::-webkit-scrollbar {
-        width: 10px;
-    }
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
 
-    *::-webkit-scrollbar-track {
-        background: #2f2e35;
-    }
+  *::-webkit-scrollbar-track {
+    background: #2f2e35;
+  }
 
-    *::-webkit-scrollbar-thumb {
-        background-color: #151419;
-        border-radius: 10px;
-        border: 3px solid #ffffff;
-    }
+  *::-webkit-scrollbar-thumb {
+    background-color: #151419;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
+}
+.file-input {
+  @apply flex items-center justify-center shadow-sm px-3 border-medium border-default-200 data-[hover=true]:border-default-400 group-data-[focus=true]:border-default-foreground min-h-[10px] rounded-medium flex-col gap-0 transition-background !duration-150 transition-colors motion-reduce:transition-none h-full py-3.5 text-sm text-gray-400;
+}
+.file-input:hover {
+  border: 2px solid #71717a;
+}
+
+.file-input::file-selector-button {
+  @apply rounded-md border-none mr-2 bg-primary-purple py-1 px-2;
 }
