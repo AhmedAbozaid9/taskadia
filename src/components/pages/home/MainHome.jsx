@@ -9,9 +9,6 @@ const MainHome = () => {
   const tasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
 
-  const createNewTask = (task) => {
-    dispatch(addTask(task));
-  };
   const editTaskById = (id, task) => {
     dispatch(editTask({ id, task }));
   };
@@ -20,7 +17,6 @@ const MainHome = () => {
   };
   return (
     <div>
-      <TaskForm />
       <TasksList tasks={tasks.tasks} />
     </div>
   );

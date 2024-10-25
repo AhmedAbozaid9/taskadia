@@ -1,8 +1,8 @@
-import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "@/utils/Providers";
 import React from "react";
 import { Toaster } from "react-hot-toast";
+import Layout from "@/components/general/Layout";
 
 export const metadata = {
   title: "Taskadia",
@@ -13,7 +13,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`min-h-[100dvh]`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Layout>{children}</Layout>
+        </Providers>
         <Toaster
           toastOptions={{
             position: "top-center",

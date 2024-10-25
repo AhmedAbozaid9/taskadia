@@ -19,7 +19,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import TaskSchema from "@/schemas/TaskFormSchema";
 import { X } from "lucide-react";
-const TaskForm = () => {
+const TaskForm = ({ createNewTask }) => {
   const [isOpen, setIsOpen] = useState(false);
   const {
     register,
@@ -54,7 +54,7 @@ const TaskForm = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    createNewTask(data);
     setIsOpen(false);
   };
   return (
