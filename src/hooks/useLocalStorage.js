@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 
 const useLocalStorage = (key, initialValue) => {
+  if (typeof window === "undefined") {
+    return null;
+  }
   const getStoredValue = () => {
     const storedValue = localStorage.getItem(key);
     if (storedValue) {

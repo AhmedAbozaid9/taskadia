@@ -1,11 +1,18 @@
 import React from "react";
+import Task from "./Task";
 
-const TasksList = ({ tasks }) => {
-  console.log(tasks);
+const TasksList = ({ tasks, showCompleted, showDescription }) => {
+  console.log(showCompleted);
+  const filteredTasks = tasks.filter((task) => {
+    if (showCompleted && task.state === "done") {
+      return false;
+    }
+    return true;
+  });
   return (
-    <div>
-      {tasks.map((task) => (
-        <div key={task.id}>{task.title}</div>
+    <div className="flex flex-col gap-5">
+      {filteredTasks.map((task) => (
+        <Task key={task.id} task={task} showDescription={showDescription} />
       ))}
     </div>
   );

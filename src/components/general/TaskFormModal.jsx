@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useRef } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   Modal,
   ModalContent,
@@ -14,24 +14,23 @@ import {
   Select,
   SelectItem,
   Skeleton,
-  Tooltip,
 } from "@nextui-org/react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import TaskSchema from "@/schemas/TaskFormSchema";
-import { SquarePlus, X } from "lucide-react";
-const TaskForm = ({ createNewTask }) => {
-  const [isOpen, setIsOpen] = useState(false);
+import { X } from "lucide-react";
+const TaskForm = ({ isOpen, setIsOpen, action, editValues }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
+    values: editValues,
     resolver: yupResolver(TaskSchema),
   });
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(editValues?.image || null);
   const imageRef = useRef(null);
 
   const handleImageChange = () => {
@@ -56,23 +55,18 @@ const TaskForm = ({ createNewTask }) => {
   };
 
   const onSubmit = (data) => {
-    createNewTask({ ...data, image });
+    action({ ...data, image });
     reset({
       title: "",
       description: "",
       priority: "",
       state: "",
-      image: null,
     });
+    setImage(null);
     setIsOpen(false);
   };
   return (
     <>
-      <Tooltip content="Add new Task" placement="right">
-        <button onClick={() => setIsOpen(true)}>
-          <SquarePlus size={24} />
-        </button>
-      </Tooltip>
       <Modal
         className="bg-main-dark-bg"
         size="3xl"
@@ -140,7 +134,7 @@ const TaskForm = ({ createNewTask }) => {
                   />
                 </div>
                 {image ? (
-                  <div className="relative w-full max-w-96 h-72 ">
+                  <div className="relative w-full w-full sm:max-w-96 h-72 ">
                     <button
                       onClick={handleRemoveImage}
                       className="absolute top-2 right-2 z-10"
@@ -155,7 +149,7 @@ const TaskForm = ({ createNewTask }) => {
                     />
                   </div>
                 ) : (
-                  <Skeleton className="w-full max-w-96 h-72"></Skeleton>
+                  <Skeleton className="w-full sm:max-w-96 h-72"></Skeleton>
                 )}
               </ModalBody>
               <ModalFooter className="flex justify-between">
