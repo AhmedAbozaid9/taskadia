@@ -16,7 +16,7 @@ const Menu = ({
   const loggedIn = false;
   return (
     <Dropdown className="bg-main-dark-bg" placement="bottom-end">
-      <DropdownTrigger className="fixed top-6 right-6">
+      <DropdownTrigger className="absolute top-6 right-6">
         <button className="focus:outline-none">
           <Ellipsis />
         </button>
