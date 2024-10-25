@@ -8,15 +8,17 @@ import {
 import { Edit, EllipsisVertical, Trash } from "lucide-react";
 
 import { useDispatch } from "react-redux";
-import { deleteTask } from "@/stores/tasks/tasksSlice";
+import { deleteTask, editTask } from "@/stores/tasks/tasksSlice";
 import toast from "react-hot-toast";
+import TaskForm from "@/components/general/TaskFormModal";
 
 const Task = ({ task, showDescription }) => {
+  const [showEditModal, setShowEditModal] = React.useState(false);
   const dispatch = useDispatch();
 
-  // const editTaskById = (id, task) => {
-  //   dispatch(editTask({ id, task }));
-  // };
+  const editTaskById = (task) => {
+    dispatch(editTask({ id: task.id, task }));
+  };
   const deleteTaskById = (id) => {
     dispatch(deleteTask(id));
     toast.success("Task deleted successfully");
@@ -47,24 +49,25 @@ const Task = ({ task, showDescription }) => {
             <EllipsisVertical size={18} />
           </button>
         </DropdownTrigger>
-        <DropdownMenu aria-label="Static Actions">
-          <DropdownItem key="showCompleted">
-            <button onClick={() => {}} className="flex items-center gap-2">
+        <DropdownMenu onClick={(e) => e.stopPropagation()}>
+          <DropdownItem onClick={() => setShowEditModal(true)} key="edit task">
+            <div className="flex items-center gap-2 bg-pink-200 w">
               <Edit size={18} />
               <span>Edit Task</span>
-            </button>
+            </div>
           </DropdownItem>
-          <DropdownItem key="showDescription">
-            <button
-              onClick={() => deleteTaskById(task.id)}
-              className="flex items-center gap-2 text-red-500"
-            >
+          <DropdownItem
+            onClick={() => deleteTaskById(task.id)}
+            key="delete task"
+          >
+            <button className="flex items-center gap-2 text-red-500">
               <Trash size={18} />
               <span>Delete Task</span>
             </button>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
+      <TaskForm />
     </div>
   );
 };

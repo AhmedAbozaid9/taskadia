@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useRef } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   Modal,
   ModalContent,
@@ -14,20 +14,19 @@ import {
   Select,
   SelectItem,
   Skeleton,
-  Tooltip,
 } from "@nextui-org/react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import TaskSchema from "@/schemas/TaskFormSchema";
-import { SquarePlus, X } from "lucide-react";
-const TaskForm = ({ createNewTask }) => {
-  const [isOpen, setIsOpen] = useState(false);
+import { X } from "lucide-react";
+const TaskForm = ({ isOpen, setIsOpen, action, Trigger, editValues }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
+    defaultValues: editValues,
     resolver: yupResolver(TaskSchema),
   });
 
@@ -56,7 +55,7 @@ const TaskForm = ({ createNewTask }) => {
   };
 
   const onSubmit = (data) => {
-    createNewTask({ ...data, image });
+    action({ ...data, image });
     reset({
       title: "",
       description: "",
@@ -68,11 +67,7 @@ const TaskForm = ({ createNewTask }) => {
   };
   return (
     <>
-      <Tooltip content="Add new Task" placement="right">
-        <button onClick={() => setIsOpen(true)}>
-          <SquarePlus size={24} />
-        </button>
-      </Tooltip>
+      <button onClick={() => setIsOpen(true)}>{Trigger}</button>
       <Modal
         className="bg-main-dark-bg"
         size="3xl"
