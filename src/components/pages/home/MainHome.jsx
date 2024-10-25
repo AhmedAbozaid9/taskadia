@@ -20,6 +20,9 @@ const MainHome = () => {
   };
   return (
     <div>
+      <h1 className="font-semibold sm:text-2xl sm:text-4xl">
+        <span className="text-pastel-pink">Welcome</span>, Ahmed 👋
+      </h1>
       <TasksList tasks={tasks.tasks} />
       <Menu
         showCompleted={showCompleted}
