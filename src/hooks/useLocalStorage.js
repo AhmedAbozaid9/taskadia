@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react";
 
 const useLocalStorage = (key, initialValue) => {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  const getStoredValue = () => {
-    const storedValue = localStorage.getItem(key);
-    if (storedValue) {
-      return JSON.parse(storedValue);
-    }
-    return initialValue;
-  };
-
-  const [value, setValue] = useState(getStoredValue);
+  const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
+    // Check if running on client side
+    if (typeof window !== "undefined") {
+      const storedValue = localStorage.getItem(key);
+      if (storedValue) {
+        setValue(JSON.parse(storedValue));
+      }
+    }
+  }, [key]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
   }, [key, value]);
 
   const removeValue = () => {
-    localStorage.removeItem(key);
-    setValue(initialValue);
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(key);
+      setValue(initialValue);
+    }
   };
 
   return [value, setValue, removeValue];

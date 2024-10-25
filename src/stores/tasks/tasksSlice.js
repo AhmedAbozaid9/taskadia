@@ -2,9 +2,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const getInitialState = () => {
-  const storedTasks = localStorage.getItem("tasks");
-  if (storedTasks) {
-    return JSON.parse(storedTasks);
+  if (typeof window !== "undefined") {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      return JSON.parse(storedTasks);
+    }
   }
   return [];
 };
