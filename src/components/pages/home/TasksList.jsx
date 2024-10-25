@@ -1,4 +1,5 @@
 import React from "react";
+import Task from "./Task";
 
 const TasksList = ({ tasks, showCompleted, showDescription }) => {
   const filteredTasks = tasks.filter((task) => {
@@ -10,10 +11,7 @@ const TasksList = ({ tasks, showCompleted, showDescription }) => {
   return (
     <div>
       {filteredTasks.map((task) => (
-        <div key={task.id}>
-          <p>{task.title}</p>
-          {showDescription && <p>{task.description}</p>}
-        </div>
+        <Task key={task.id} task={task} />
       ))}
     </div>
   );
