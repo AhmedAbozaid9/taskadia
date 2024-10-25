@@ -3,11 +3,26 @@ import React from "react";
 import { TimerContextProvider } from "@/contexts/TimerContext";
 import { Provider as ReduxProvider } from "react-redux";
 import tasksStore from "@/stores/tasks";
+import { NextUIProvider } from "@nextui-org/react";
+import { ThemeProvider } from "next-theme";
 
 const Providers = ({ children }) => {
   return (
     <ReduxProvider store={tasksStore}>
-      <TimerContextProvider>{children}</TimerContextProvider>
+      <TimerContextProvider>
+        <NextUIProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            value={{
+              light: "light",
+              dark: "dark",
+            }}
+          >
+            {children}
+          </ThemeProvider>
+        </NextUIProvider>
+      </TimerContextProvider>
     </ReduxProvider>
   );
 };
