@@ -6,7 +6,21 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { Edit, EllipsisVertical, Trash } from "lucide-react";
+
+import { useDispatch } from "react-redux";
+import { deleteTask } from "@/stores/tasks/tasksSlice";
+import toast from "react-hot-toast";
+
 const Task = ({ task, showDescription }) => {
+  const dispatch = useDispatch();
+
+  // const editTaskById = (id, task) => {
+  //   dispatch(editTask({ id, task }));
+  // };
+  const deleteTaskById = (id) => {
+    dispatch(deleteTask(id));
+    toast.success("Task deleted successfully");
+  };
   return (
     <div
       className={`group relative overflow-hidden border-2  px-4 py-8 rounded-xl transition-transform duration-300 ease-in-out hover:bg-scale-105 hover:shadow-lg`}
@@ -42,7 +56,7 @@ const Task = ({ task, showDescription }) => {
           </DropdownItem>
           <DropdownItem key="showDescription">
             <button
-              onClick={() => {}}
+              onClick={() => deleteTaskById(task.id)}
               className="flex items-center gap-2 text-red-500"
             >
               <Trash size={18} />
