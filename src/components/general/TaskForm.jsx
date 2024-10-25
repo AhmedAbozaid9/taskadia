@@ -62,8 +62,8 @@ const TaskForm = ({ createNewTask }) => {
       description: "",
       priority: "",
       state: "",
-      image: null,
     });
+    setImage(null);
     setIsOpen(false);
   };
   return (
