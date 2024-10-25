@@ -18,6 +18,7 @@ const Task = ({ task, showDescription }) => {
 
   const editTaskById = (task) => {
     dispatch(editTask({ id: task.id, task }));
+    toast.success("Task updated successfully");
   };
   const deleteTaskById = (id) => {
     dispatch(deleteTask(id));
@@ -51,7 +52,7 @@ const Task = ({ task, showDescription }) => {
         </DropdownTrigger>
         <DropdownMenu onClick={(e) => e.stopPropagation()}>
           <DropdownItem onClick={() => setShowEditModal(true)} key="edit task">
-            <div className="flex items-center gap-2 bg-pink-200 w">
+            <div className="flex items-center gap-2">
               <Edit size={18} />
               <span>Edit Task</span>
             </div>
@@ -67,7 +68,14 @@ const Task = ({ task, showDescription }) => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-      <TaskForm />
+      {showEditModal && (
+        <TaskForm
+          isOpen={showEditModal}
+          setIsOpen={setShowEditModal}
+          action={editTaskById}
+          editValues={task}
+        />
+      )}
     </div>
   );
 };

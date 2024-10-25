@@ -19,18 +19,18 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import TaskSchema from "@/schemas/TaskFormSchema";
 import { X } from "lucide-react";
-const TaskForm = ({ isOpen, setIsOpen, action, Trigger, editValues }) => {
+const TaskForm = ({ isOpen, setIsOpen, action, editValues }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues: editValues,
+    values: editValues,
     resolver: yupResolver(TaskSchema),
   });
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(editValues?.image || null);
   const imageRef = useRef(null);
 
   const handleImageChange = () => {
@@ -67,7 +67,6 @@ const TaskForm = ({ isOpen, setIsOpen, action, Trigger, editValues }) => {
   };
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>{Trigger}</button>
       <Modal
         className="bg-main-dark-bg"
         size="3xl"
