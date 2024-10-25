@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { ChartNoAxesColumn, Clock2, SquareCheckBig } from "lucide-react";
-import { Tooltip } from "@nextui-org/react";
+import { Tooltip, Avatar } from "@nextui-org/react";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -19,6 +19,13 @@ const Sidebar = () => {
   };
   return (
     <div className="bg-main-dark-bg h-[100dvh] sticky top-0 left-0 p-4 flex flex-col gap-8">
+      <div className="flex gap-4 items-center mx-auto">
+        <Avatar
+          size="sm"
+          showFallback
+          src="https://images.unsplash.com/broken"
+        />
+      </div>
       <Tooltip content="Tasks" placement="right">
         <Link
           href="/"
