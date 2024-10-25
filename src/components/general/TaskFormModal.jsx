@@ -134,7 +134,7 @@ const TaskForm = ({ isOpen, setIsOpen, action, editValues }) => {
                   />
                 </div>
                 {image ? (
-                  <div className="relative w-full max-w-96 h-72 ">
+                  <div className="relative w-full w-full sm:max-w-96 h-72 ">
                     <button
                       onClick={handleRemoveImage}
                       className="absolute top-2 right-2 z-10"
@@ -149,7 +149,7 @@ const TaskForm = ({ isOpen, setIsOpen, action, editValues }) => {
                     />
                   </div>
                 ) : (
-                  <Skeleton className="w-full max-w-96 h-72"></Skeleton>
+                  <Skeleton className="w-full sm:max-w-96 h-72"></Skeleton>
                 )}
               </ModalBody>
               <ModalFooter className="flex justify-between">

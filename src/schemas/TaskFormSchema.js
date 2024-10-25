@@ -20,18 +20,6 @@ const TaskSchema = yup.object().shape({
     .string()
     .oneOf(["todo", "doing", "done"], "State must be todo, doing, or done")
     .required("State is required"),
-
-  image: yup
-    .mixed()
-    .test("fileType", "Only image files are allowed", (value) => {
-      if (!value) {
-        return true;
-      } // Allows an empty image field
-      return (
-        value && ["image/jpeg", "image/png", "image/gif"].includes(value.type)
-      );
-    })
-    .nullable(),
 });
 
 export default TaskSchema;
