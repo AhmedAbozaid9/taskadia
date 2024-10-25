@@ -20,10 +20,13 @@ const MainHome = () => {
   };
   return (
     <div>
-      <h1 className="font-semibold sm:text-2xl sm:text-4xl">
+      <h1 className="font-semibold sm:text-2xl sm:text-4xl ">
         <span className="text-pastel-pink">Welcome</span>, Ahmed 👋
       </h1>
-      <TasksList tasks={tasks.tasks} />
+      <h2 className="text-lg opacity-90 mt-2 mb-5 sm:mb-8">
+        here&apos;s what you need to do
+      </h2>
+      <TasksList tasks={tasks.tasks} showDescription={showDescription} />
       <Menu
         showCompleted={showCompleted}
         setShowCompleted={setShowCompleted}

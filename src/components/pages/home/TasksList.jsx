@@ -9,9 +9,9 @@ const TasksList = ({ tasks, showCompleted, showDescription }) => {
     return !task.completed;
   });
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       {filteredTasks.map((task) => (
-        <Task key={task.id} task={task} />
+        <Task key={task.id} task={task} showDescription={showDescription} />
       ))}
     </div>
   );
