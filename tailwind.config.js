@@ -11,8 +11,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "primary-purple": "#B0578D",
+        "secondary-purple": "#E074ED",
+        "pastel-green": "#B8ECED",
+        "pastel-pink": "#ED74BD",
+        "main-dark-bg": "#151419",
+        "hover-bg": "rgba(36,35,42,0.6)",
+        "secondary-text": "#B3B3B3",
       },
     },
   },
