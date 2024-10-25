@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Tabs, Tab, Divider } from "@nextui-org/react";
+import { Tabs, Tab } from "@nextui-org/react";
 
 import Timer from "./Timer";
 import StopWatch from "./StopWatch";
@@ -17,7 +17,7 @@ const Page = () => {
 
   return (
     <section className="w-full sm:p-6 p-3 flex max-md:flex-col justify-between">
-      <div className="flex flex-1 flex-col gap-5 items-center">
+      <div className="flex flex-1 flex-col gap-5 items-center ">
         {/*<SelectTask />*/}
 
         <Tabs
@@ -33,7 +33,7 @@ const Page = () => {
         </Tabs>
         {selectedType === "Timer" ? <Timer /> : <StopWatch />}
       </div>
-      <Divider orientation="vertical" className="max-md:hidden mx-5" />
+      <div className="bg-neutral-600 max-md:hidden mx-5 w-0.5 h-[calc(100dvh-1rem)" />
       <TimerStatistics
         sessions={sessions}
         totalTime={totalTime}
