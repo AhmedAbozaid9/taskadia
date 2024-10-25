@@ -55,7 +55,7 @@ const TaskForm = ({ createNewTask }) => {
   };
 
   const onSubmit = (data) => {
-    createNewTask(data);
+    createNewTask({ ...data, image });
     reset({
       title: "",
       description: "",
