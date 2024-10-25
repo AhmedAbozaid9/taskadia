@@ -24,6 +24,7 @@ const TaskForm = ({ createNewTask }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(TaskSchema),
@@ -55,6 +56,13 @@ const TaskForm = ({ createNewTask }) => {
 
   const onSubmit = (data) => {
     createNewTask(data);
+    reset({
+      title: "",
+      description: "",
+      priority: "",
+      state: "",
+      image: null,
+    });
     setIsOpen(false);
   };
   return (
