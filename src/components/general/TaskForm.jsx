@@ -18,6 +18,7 @@ import {
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import TaskSchema from "@/schemas/TaskFormSchema";
+import { X } from "lucide-react";
 const TaskForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {
@@ -28,7 +29,7 @@ const TaskForm = () => {
     resolver: yupResolver(TaskSchema),
   });
 
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const imageRef = useRef(null);
 
   const handleImageChange = () => {
@@ -44,16 +45,22 @@ const TaskForm = () => {
       reader.readAsDataURL(file);
     }
   };
+  const handleRemoveImage = () => {
+    setImage(null);
+    // Reset the file input
+    if (imageRef.current) {
+      imageRef.current.value = null; // Clear the input value
+    }
+  };
 
   const onSubmit = (data) => {
     console.log(data);
     setIsOpen(false);
   };
-  console.log(errors.title?.message);
   return (
     <>
       <Button onPress={() => setIsOpen(true)} color="primary">
-        Open Modal
+        Add task
       </Button>
       <Modal
         className="bg-main-dark-bg"
@@ -123,6 +130,12 @@ const TaskForm = () => {
                 </div>
                 {image ? (
                   <div className="relative w-full max-w-96 h-72 ">
+                    <button
+                      onClick={handleRemoveImage}
+                      className="absolute top-2 right-2 z-10"
+                    >
+                      <X />
+                    </button>
                     <Image
                       alt="project thumbnail"
                       fill
