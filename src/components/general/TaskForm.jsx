@@ -14,11 +14,12 @@ import {
   Select,
   SelectItem,
   Skeleton,
+  Tooltip,
 } from "@nextui-org/react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import TaskSchema from "@/schemas/TaskFormSchema";
-import { X } from "lucide-react";
+import { SquarePlus, X } from "lucide-react";
 const TaskForm = ({ createNewTask }) => {
   const [isOpen, setIsOpen] = useState(false);
   const {
@@ -67,9 +68,11 @@ const TaskForm = ({ createNewTask }) => {
   };
   return (
     <>
-      <Button onPress={() => setIsOpen(true)} color="primary">
-        Add task
-      </Button>
+      <Tooltip content="Add new Task" placement="right">
+        <button onClick={() => setIsOpen(true)}>
+          <SquarePlus size={24} />
+        </button>
+      </Tooltip>
       <Modal
         className="bg-main-dark-bg"
         size="3xl"
