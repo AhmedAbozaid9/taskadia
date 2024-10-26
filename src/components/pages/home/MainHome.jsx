@@ -24,7 +24,7 @@ const MainHome = () => {
     <div>
       <h1 className="font-semibold text-2xl sm:text-4xl ">
         <span className="text-pastel-pink">Welcome</span>,
-        {session?.user.name || "user"} 👋
+        {session?.user.name.split(" ")[0] || "user"} 👋
       </h1>
       <h2 className="sm:text-lg opacity-90 mt-2 mb-5 sm:mb-8">
         here&apos;s what you need to do
