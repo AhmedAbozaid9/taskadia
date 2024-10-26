@@ -7,7 +7,7 @@ const Empty = () => {
       <Sparkle className="absolute top-10 left-10" />
       <Sparkle className="absolute top-30 right-10" />
       <Sparkle className="absolute bottom-2 right-30" />
-      <p>This looks empty</p>
+      <p className="font-semibold">This looks empty</p>
     </div>
   );
 };
