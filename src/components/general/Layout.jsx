@@ -1,10 +1,14 @@
+"use client";
 import React from "react";
 import Sidebar from "./Sidebar";
 import AddTaskButton from "./AddTaskButton";
 import MobileTabBar from "./MobileTabBar";
+import { useSession } from "next-auth/react";
 
 const Layout = ({ children }) => {
-  const profileImage = "";
+  const { data: session } = useSession();
+
+  const profileImage = session?.user?.image;
   return (
     <div className="sm:flex">
       <div className="max-sm:hidden">
