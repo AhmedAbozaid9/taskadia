@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Introduction
 
-## Getting Started
+Hello there! 👋
 
-First, run the development server:
+I'm thrilled to present **Taskadia** – a unique task management system I developed within just 2 days as a challenge. My goal was to create a standout application, implementing efficient code practices and enhancing user experience. Feel free to explore, test it, and dive into the codebase!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Accomplishments
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **State Management with Redux Toolkit:**  
+  Used Redux Toolkit to build a robust store for managing tasks.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Dynamic Task Backgrounds:**  
+  Implemented image storage for each task, displayed as backgrounds to add a personalized feel to task cards.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **CRUD Operations:**  
+  Fully functional CRUD operations with a responsive, user-friendly UI.
 
-## Learn More
+- **Leveraging Redux Design Pattern:**  
+  Applied the Flux architecture of Redux, enabling task data usage across multiple components.
 
-To learn more about Next.js, take a look at the following resources:
+- **Timer and Stopwatch Integration:**  
+  Built a timer and stopwatch, complete with task selection for focused time management.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Data Visualization with Bar Chart:**  
+  Streamlined task data into a clear and informative bar chart.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Google Account Sign-In:**  
+  Integrated Google Authentication for quick and secure sign-in.
