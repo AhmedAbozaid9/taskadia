@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import AddTaskButton from "./AddTaskButton";
-import MobileTabBar from "./MobileTabBar";
+import MobileTabBar from "./MobileTabBar.jsx";
 
 const Layout = ({ children }) => {
   const profileImage = "";
