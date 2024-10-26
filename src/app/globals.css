@@ -24,6 +24,10 @@ body {
   }
 }
 
+.mainShadow {
+  box-shadow: 0px 4px 8px 0px #0000000d;
+}
+
 @media only screen and (min-width: 768px) {
   /* ===== Scrollbar CSS ===== */
   /* Firefox */
