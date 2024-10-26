@@ -1,24 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Tabs, Tab } from "@nextui-org/react";
 
 import Timer from "./Timer";
 import StopWatch from "./StopWatch";
 import TimerStatistics from "./TimerStatistics";
 import SelectTask from "./SelectTask";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 const Page = () => {
   const [selectedType, setSelectedType] = useState("Timer");
-  const [sessions, setSessions] = useState();
-  const [totalTime, setTotalTime] = useState();
-  const [totalCount, setTotalCount] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [sessions] = useLocalStorage("sessions", []);
+  const [totalTime] = useLocalStorage("totalTime", 0);
+  const [totalCount] = useLocalStorage("totalCount", 0);
 
   return (
     <section className="w-full sm:p-6 p-3 flex max-md:flex-col justify-between">
       <div className="flex flex-1 flex-col gap-5 items-center ">
-        {/*<SelectTask />*/}
+        <SelectTask />
 
         <Tabs
           size="sm"
@@ -38,7 +38,6 @@ const Page = () => {
         sessions={sessions}
         totalTime={totalTime}
         totalCount={totalCount}
-        isLoading={isLoading}
       />
     </section>
   );

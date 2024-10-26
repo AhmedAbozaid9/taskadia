@@ -1,24 +1,25 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
+import { useSelector } from "react-redux";
 
 const SelectTask = () => {
-  const { projects, currentProject, setCurrentProject } =
-    useContext(ProjectsContext);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const tasks = useSelector((state) => state.tasks);
 
   return (
     <Select
-      selectedKeys={currentProject}
-      onSelectionChange={setCurrentProject}
+      selectedKeys={selectedTask}
+      onSelectionChange={setSelectedTask}
       size="sm"
-      label="Select a project"
+      label="Select a task"
       className="max-w-52 py-0"
       classNames={{
         trigger: "bg-transparent data-hover:bg-transparent",
       }}
     >
-      {projects?.map((project) => (
-        <SelectItem key={project._id} value={project.title}>
-          {project.title}
+      {tasks.tasks?.map((task) => (
+        <SelectItem key={task.id} value={task.title}>
+          {task.title}
         </SelectItem>
       ))}
     </Select>

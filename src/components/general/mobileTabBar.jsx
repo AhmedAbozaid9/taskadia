@@ -17,13 +17,18 @@ const MobileTabBar = ({ profileImage }) => {
             href={link.href}
             className={`${
               pathname === link.href && "bg-primary-purple"
-            } p-1.5 rounded-md`}
+            } p-1.5 rounded-full`}
           >
             {link.icon}
           </Link>
         </Tooltip>
       ))}
-      <Avatar size="sm" showFallback src={profileImage} />
+      <Avatar
+        className="min-w-[30px]"
+        size="sm"
+        showFallback
+        src={profileImage}
+      />
     </div>
   );
 };
