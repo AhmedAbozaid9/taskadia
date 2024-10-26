@@ -21,9 +21,9 @@ import TaskForm from "@/components/general/TaskFormModal";
 
 const Task = ({ task, showDescription }) => {
   const borderConfig = {
-    todo: "border-secondary-purple",
-    doing: "border-pastel-pink",
-    done: "border-pastel-green",
+    low: "border-secondary-purple",
+    medium: "border-pastel-pink",
+    high: "border-pastel-green",
   };
   const [showEditModal, setShowEditModal] = React.useState(false);
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const Task = ({ task, showDescription }) => {
   return (
     <div
       className={`group relative overflow-hidden border-2 ${
-        borderConfig[task.state]
+        borderConfig[task.priority]
       }  px-4 sm:px-6 py-8 rounded-xl transition-transform duration-300 ease-in-out hover:bg-scale-105 hover:shadow-lg`}
     >
       {task.image && (
