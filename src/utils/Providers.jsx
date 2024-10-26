@@ -6,24 +6,28 @@ import tasksStore from "@/stores/tasks";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider } from "next-theme";
 
+import { SessionProvider } from "next-auth/react";
+
 const Providers = ({ children }) => {
   return (
-    <ReduxProvider store={tasksStore}>
-      <TimerContextProvider>
-        <NextUIProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            value={{
-              light: "light",
-              dark: "dark",
-            }}
-          >
-            {children}
-          </ThemeProvider>
-        </NextUIProvider>
-      </TimerContextProvider>
-    </ReduxProvider>
+    <SessionProvider>
+      <ReduxProvider store={tasksStore}>
+        <TimerContextProvider>
+          <NextUIProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              value={{
+                light: "light",
+                dark: "dark",
+              }}
+            >
+              {children}
+            </ThemeProvider>
+          </NextUIProvider>
+        </TimerContextProvider>
+      </ReduxProvider>
+    </SessionProvider>
   );
 };
 
