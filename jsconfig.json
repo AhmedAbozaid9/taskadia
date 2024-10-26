@@ -2,6 +2,15 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]
-    }
-  }
+    },
+    "allowJs": true,
+    // "checkJs": true, // Checks for syntax and configuration issues
+    "strict": false, // Disables strict type-checking
+    "noImplicitAny": false, // Allows variables without explicit types
+    "noEmit": true, // Prevents output files from being generated
+    "jsx": "react",
+    "strictNullChecks": false,
+    "strictFunctionTypes": false
+  },
+  "exclude": ["./node_modules"]
 }

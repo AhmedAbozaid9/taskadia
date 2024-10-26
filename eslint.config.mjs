@@ -15,7 +15,6 @@ export default [
       "no-debugger": "warn",
       eqeqeq: ["warn", "always"],
       curly: "warn",
-      semi: ["warn", "always"],
       "no-undef": "warn",
       "no-redeclare": "warn",
       "consistent-return": "warn",

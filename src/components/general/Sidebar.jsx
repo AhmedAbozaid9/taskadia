@@ -1,28 +1,14 @@
 "use client";
-import React, { useState } from "react";
-import TaskForm from "./TaskFormModal";
-import { addTask } from "@/stores/tasks/tasksSlice";
-import { useDispatch } from "react-redux";
+import React from "react";
+
 import { usePathname } from "next/navigation";
-import toast from "react-hot-toast";
 import Link from "next/link";
-import {
-  ChartNoAxesColumn,
-  Clock2,
-  SquareCheckBig,
-  SquarePlus,
-} from "lucide-react";
+import { ChartNoAxesColumn, Clock2, SquareCheckBig } from "lucide-react";
 import { Tooltip, Avatar } from "@nextui-org/react";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const dispatch = useDispatch();
 
-  const createNewTask = (task) => {
-    dispatch(addTask(task));
-    toast.success("Task created successfully");
-  };
   return (
     <div className="bg-main-dark-bg h-[100dvh] sticky top-0 left-0 p-4 flex flex-col gap-8">
       <div className="flex gap-4 items-center mx-auto">
@@ -62,15 +48,6 @@ const Sidebar = () => {
           <ChartNoAxesColumn size={24} />
         </Link>
       </Tooltip>
-      <button
-        onClick={() => setIsOpen(true)}
-        className={`mt-auto p-1.5 rounded-md`}
-      >
-        <Tooltip content="Add new Task" placement="right">
-          <SquarePlus size={24} />
-        </Tooltip>
-      </button>
-      <TaskForm isOpen={isOpen} setIsOpen={setIsOpen} action={createNewTask} />
     </div>
   );
 };
