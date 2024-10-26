@@ -4,8 +4,15 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Checkbox,
 } from "@nextui-org/react";
-import { Edit, EllipsisVertical, Trash } from "lucide-react";
+import {
+  BadgeCheck,
+  Edit,
+  EllipsisVertical,
+  ListTodo,
+  Trash,
+} from "lucide-react";
 
 import { useDispatch } from "react-redux";
 import { deleteTask, editTask } from "@/stores/tasks/tasksSlice";
@@ -13,6 +20,11 @@ import toast from "react-hot-toast";
 import TaskForm from "@/components/general/TaskFormModal";
 
 const Task = ({ task, showDescription }) => {
+  const borderConfig = {
+    todo: "border-secondary-purple",
+    doing: "border-pastel-pink",
+    done: "border-pastel-green",
+  };
   const [showEditModal, setShowEditModal] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -26,7 +38,9 @@ const Task = ({ task, showDescription }) => {
   };
   return (
     <div
-      className={`group relative overflow-hidden border-2  px-4 py-8 rounded-xl transition-transform duration-300 ease-in-out hover:bg-scale-105 hover:shadow-lg`}
+      className={`group relative overflow-hidden border-2 ${
+        borderConfig[task.state]
+      }  px-4 sm:px-6 py-8 rounded-xl transition-transform duration-300 ease-in-out hover:bg-scale-105 hover:shadow-lg`}
     >
       {task.image && (
         <>
@@ -38,12 +52,27 @@ const Task = ({ task, showDescription }) => {
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40" />
         </>
       )}
-      <div className="relative z-10">
-        <p>{task.title}</p>
-        {showDescription && (
-          <p className="text-sm opacity-70">{task.description}</p>
+
+      <button>
+        <Checkbox
+          lineThrough
+          color="secondary"
+          isSelected={task.state === "done"}
+          onChange={() =>
+            editTaskById({
+              ...task,
+              state: task.state === "done" ? "doing" : "done",
+            })
+          }
+        >
+          <div className="relative z-10">
+            <p>{task.title}</p>
+          </div>
+        </Checkbox>
+        {showDescription && task.description && (
+          <p className="text-sm opacity-70 mt-2">{task.description}</p>
         )}
-      </div>
+      </button>
       <Dropdown className="bg-main-dark-bg" placement="bottom-end">
         <DropdownTrigger className="absolute top-3 right-4 z-30">
           <button className="focus:outline-none">
@@ -57,6 +86,39 @@ const Task = ({ task, showDescription }) => {
               <span>Edit Task</span>
             </div>
           </DropdownItem>
+
+          {task.state === "todo" && (
+            <DropdownItem
+              onClick={() =>
+                editTaskById({
+                  ...task,
+                  state: "doing",
+                })
+              }
+              key="to do"
+            >
+              <button className="flex items-center gap-2">
+                <BadgeCheck size={18} />
+                <span>Change to Doing</span>
+              </button>
+            </DropdownItem>
+          )}
+          {task.state !== "todo" && (
+            <DropdownItem
+              onClick={() =>
+                editTaskById({
+                  ...task,
+                  state: "todo",
+                })
+              }
+              key="not todo"
+            >
+              <button className="flex items-center gap-2 ">
+                <ListTodo size={18} />
+                <span>Change to Todo</span>
+              </button>
+            </DropdownItem>
+          )}
           <DropdownItem
             onClick={() => deleteTaskById(task.id)}
             key="delete task"
