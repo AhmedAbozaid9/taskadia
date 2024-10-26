@@ -6,7 +6,13 @@ import {
   DropdownItem,
   Checkbox,
 } from "@nextui-org/react";
-import { Edit, EllipsisVertical, Trash } from "lucide-react";
+import {
+  BadgeCheck,
+  Edit,
+  EllipsisVertical,
+  ListTodo,
+  Trash,
+} from "lucide-react";
 
 import { useDispatch } from "react-redux";
 import { deleteTask, editTask } from "@/stores/tasks/tasksSlice";
@@ -73,6 +79,39 @@ const Task = ({ task, showDescription }) => {
               <span>Edit Task</span>
             </div>
           </DropdownItem>
+
+          {task.state === "todo" && (
+            <DropdownItem
+              onClick={() =>
+                editTaskById({
+                  ...task,
+                  state: "doing",
+                })
+              }
+              key="to do"
+            >
+              <button className="flex items-center gap-2">
+                <BadgeCheck size={18} />
+                <span>Change to Doing</span>
+              </button>
+            </DropdownItem>
+          )}
+          {task.state !== "todo" && (
+            <DropdownItem
+              onClick={() =>
+                editTaskById({
+                  ...task,
+                  state: "todo",
+                })
+              }
+              key="not todo"
+            >
+              <button className="flex items-center gap-2 ">
+                <ListTodo size={18} />
+                <span>Change to Todo</span>
+              </button>
+            </DropdownItem>
+          )}
           <DropdownItem
             onClick={() => deleteTaskById(task.id)}
             key="delete task"
