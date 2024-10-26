@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Tabs, Tab } from "@nextui-org/react";
 
 import Timer from "./Timer";
@@ -18,7 +18,7 @@ const Page = () => {
   return (
     <section className="w-full sm:p-6 p-3 flex max-md:flex-col justify-between">
       <div className="flex flex-1 flex-col gap-5 items-center ">
-        {/*<SelectTask />*/}
+        <SelectTask />
 
         <Tabs
           size="sm"
