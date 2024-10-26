@@ -23,7 +23,12 @@ const MobileTabBar = ({ profileImage }) => {
           </Link>
         </Tooltip>
       ))}
-      <Avatar size="sm" showFallback src={profileImage} />
+      <Avatar
+        className="min-w-[30px]"
+        size="sm"
+        showFallback
+        src={profileImage}
+      />
     </div>
   );
 };

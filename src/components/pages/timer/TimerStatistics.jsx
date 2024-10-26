@@ -1,7 +1,8 @@
 import React from "react";
 import { Skeleton } from "@nextui-org/react";
+import Empty from "@/components/general/Empty";
 
-const TimerStatistics = ({ sessions, totalTime, totalCount, isLoading }) => {
+const TimerStatistics = ({ sessions, totalTime, totalCount }) => {
   return (
     <div className="flex-1 flex flex-col gap-5 ">
       <div className="flex gap-5 justify-center">
@@ -22,14 +23,9 @@ const TimerStatistics = ({ sessions, totalTime, totalCount, isLoading }) => {
       </div>
       <p className="font-medium">Recent sessions</p>
       <div className=" flex flex-col gap-3 md:overflow-y-scroll md:h-80 md:pr-2">
-        {isLoading ? (
+        {sessions.length === 0 ? (
           <>
-            <Skeleton className="rounded-md">
-              <div className="w-full h-16" />
-            </Skeleton>
-            <Skeleton className="rounded-md">
-              <div className="w-full h-16" />
-            </Skeleton>
+            <Empty />
           </>
         ) : (
           <>
@@ -39,7 +35,7 @@ const TimerStatistics = ({ sessions, totalTime, totalCount, isLoading }) => {
                 className="flex justify-between items-center rounded-md bg-main-dark-bg p-4"
               >
                 <div className="flex flex-col justify-between">
-                  <p className="font-medium">{session.project?.title}</p>
+                  <p className="font-medium">{session.task?.title}</p>
                   <p className="py-1 text-secondary-text text-xs">
                     {new Date(session.date).getFullYear()}
                   </p>
