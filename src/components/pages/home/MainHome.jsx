@@ -12,7 +12,7 @@ const MainHome = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true); // Set to true once component has mounted
+    setMounted(true);
   }, []);
 
   const [showCompleted, setShowCompleted] = useLocalStorage(
