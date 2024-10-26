@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import TasksList from "./TasksList";
 import Menu from "./Menu";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import Empty from "@/components/general/Empty";
 
 const MainHome = () => {
   const [showCompleted, setShowCompleted] = useLocalStorage(
@@ -19,16 +20,20 @@ const MainHome = () => {
   return (
     <div>
       <h1 className="font-semibold text-2xl sm:text-4xl ">
-        <span className="text-pastel-pink">Welcome</span>, Ahmed 👋
+        <span className="text-pastel-pink">Welcome</span>, user 👋
       </h1>
       <h2 className="sm:text-lg opacity-90 mt-2 mb-5 sm:mb-8">
         here&apos;s what you need to do
       </h2>
-      <TasksList
-        tasks={tasks.tasks}
-        showDescription={showDescription}
-        showCompleted={showCompleted}
-      />
+      {tasks.tasks.length === 0 ? (
+        <Empty />
+      ) : (
+        <TasksList
+          tasks={tasks.tasks}
+          showCompleted={showCompleted}
+          showDescription={showDescription}
+        />
+      )}
       <Menu
         showCompleted={showCompleted}
         setShowCompleted={setShowCompleted}

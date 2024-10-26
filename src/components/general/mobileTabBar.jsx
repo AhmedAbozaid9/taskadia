@@ -1,21 +1,18 @@
 "use client";
-import React from "react";
 
+import { Avatar } from "@nextui-org/react";
+import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Tooltip, Avatar } from "@nextui-org/react";
+import { Tooltip } from "@nextui-org/react";
 import { navigationLinks } from "@/constants/general/navigation";
 
-const Sidebar = ({ profileImage }) => {
+const MobileTabBar = ({ profileImage }) => {
   const pathname = usePathname();
-
   return (
-    <div className="bg-main-dark-bg h-[100dvh] sticky top-0 left-0 p-4 flex flex-col gap-8">
-      <div className="flex gap-4 items-center mx-auto">
-        <Avatar size="sm" showFallback src={profileImage} />
-      </div>
+    <div className="z-20 flex bg-main-dark-bg fixed items-center justify-around bottom-4 left-0 right-0 w-[90%] mx-auto gap-12 px-8 py-3 rounded-full">
       {navigationLinks.map((link) => (
-        <Tooltip key={link.name} content={link.name} placement="right">
+        <Tooltip key={link.name} content={link.name} placement="top">
           <Link
             href={link.href}
             className={`${
@@ -26,8 +23,9 @@ const Sidebar = ({ profileImage }) => {
           </Link>
         </Tooltip>
       ))}
+      <Avatar size="sm" showFallback src={profileImage} />
     </div>
   );
 };
 
-export default Sidebar;
+export default MobileTabBar;
