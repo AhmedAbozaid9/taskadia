@@ -6,6 +6,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { CheckCheck, Ellipsis, LogIn, LogOut, Text } from "lucide-react";
+import { signIn, signOut } from "next-auth/react";
 
 const Menu = ({
   showCompleted,
@@ -42,21 +43,17 @@ const Menu = ({
             </span>
           </button>
         </DropdownItem>
-        <DropdownItem key="edit">
-          {" "}
-          <button onClick={() => {}} className="flex items-center gap-2">
-            {loggedIn ? (
-              <span className="flex items-center gap-2 text-red-500">
-                <LogOut size={18} />
-                <span>Log Out</span>
-              </span>
-            ) : (
-              <span className="flex items-center gap-2">
-                <LogIn size={18} />
-                <span>Log In</span>
-              </span>
-            )}
-          </button>
+        <DropdownItem onClick={signIn} key="signIn">
+          <span className="flex items-center gap-2">
+            <LogIn size={18} />
+            <span>Log In</span>
+          </span>
+        </DropdownItem>
+        <DropdownItem onClick={signOut} key="signOut">
+          <span className="flex items-center gap-2 text-red-500">
+            <LogOut size={18} />
+            <span>Log Out</span>
+          </span>
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
