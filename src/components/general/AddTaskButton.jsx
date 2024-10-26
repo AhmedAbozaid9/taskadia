@@ -21,7 +21,7 @@ const AddTaskButton = () => {
         size="sm"
         onClick={() => setIsOpen(true)}
         isIconOnly
-        className="fixed bottom-10 right-10 w-10 h-10 !p-0  bg-primary-purple rounded-full"
+        className="fixed bottom-24 sm:bottom-10 right-6 w-12 h-12 !p-0  bg-primary-purple rounded-full"
       >
         <Plus />
       </Button>

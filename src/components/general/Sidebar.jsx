@@ -6,13 +6,13 @@ import Link from "next/link";
 import { Tooltip, Avatar } from "@nextui-org/react";
 import { navigationLinks } from "@/constants/general/navigation";
 
-const Sidebar = () => {
+const Sidebar = ({ profileImage }) => {
   const pathname = usePathname();
 
   return (
     <div className="bg-main-dark-bg h-[100dvh] sticky top-0 left-0 p-4 flex flex-col gap-8">
       <div className="flex gap-4 items-center mx-auto">
-        <Avatar size="sm" showFallback src="" />
+        <Avatar size="sm" showFallback src={profileImage} />
       </div>
       {navigationLinks.map((link) => (
         <Tooltip key={link.name} content={link.name} placement="right">
