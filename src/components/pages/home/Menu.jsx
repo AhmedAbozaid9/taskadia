@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Dropdown,
@@ -6,7 +7,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { CheckCheck, Ellipsis, LogIn, LogOut, Text } from "lucide-react";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Menu = ({
   showCompleted,
@@ -14,7 +15,7 @@ const Menu = ({
   showDescription,
   setShowDescription,
 }) => {
-  const loggedIn = false;
+  const { data: session } = useSession();
   return (
     <Dropdown className="bg-main-dark-bg" placement="bottom-end">
       <DropdownTrigger className="absolute top-6 right-6">
@@ -43,18 +44,22 @@ const Menu = ({
             </span>
           </button>
         </DropdownItem>
-        <DropdownItem onClick={signIn} key="signIn">
-          <span className="flex items-center gap-2">
-            <LogIn size={18} />
-            <span>Log In</span>
-          </span>
-        </DropdownItem>
-        <DropdownItem onClick={signOut} key="signOut">
-          <span className="flex items-center gap-2 text-red-500">
-            <LogOut size={18} />
-            <span>Log Out</span>
-          </span>
-        </DropdownItem>
+
+        {session ? (
+          <DropdownItem onClick={signOut} key="signOut">
+            <span className="flex items-center gap-2 text-red-500">
+              <LogOut size={18} />
+              <span>Log Out</span>
+            </span>
+          </DropdownItem>
+        ) : (
+          <DropdownItem onClick={() => signIn("google")} key="signIn">
+            <span className="flex items-center gap-2">
+              <LogIn size={18} />
+              <span>Log In</span>
+            </span>
+          </DropdownItem>
+        )}
       </DropdownMenu>
     </Dropdown>
   );
