@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { useSelector } from "react-redux";
 
-const SelectTask = () => {
-  const [selectedTask, setSelectedTask] = useState(null);
+const SelectTask = ({ selectedTask, setSelectedTask }) => {
+  console.log(selectedTask);
   const tasks = useSelector((state) => state.tasks);
 
   return (
     <Select
-      selectedKeys={selectedTask}
+      value={selectedTask}
       onSelectionChange={setSelectedTask}
       size="sm"
       label="Select a task"

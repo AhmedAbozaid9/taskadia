@@ -11,9 +11,13 @@ const Timer = () => {
   const { time, isPaused, isExpired, start, pause, resume, end } = timer;
 
   const handleInputChange = (value) => {
-    if (value > 180) setInputTime(180);
-    else if (value < 1) setInputTime(1);
-    else setInputTime(value);
+    if (value > 180) {
+      setInputTime(180);
+    } else if (value < 1) {
+      setInputTime(1);
+    } else {
+      setInputTime(value);
+    }
   };
 
   const startTimer = () => {
@@ -21,9 +25,7 @@ const Timer = () => {
       toast.error("You must stop the timer first");
       return;
     }
-    // } else if (!currentProject?.size) {
-    //   toast.error("the session will not be saved if you didn't pick a project");
-    // }
+
     start(inputTime * 60);
   };
 

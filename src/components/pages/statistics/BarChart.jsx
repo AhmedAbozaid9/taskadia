@@ -26,8 +26,8 @@ const BarChart = ({ taskCounts }) => {
       {
         label: "Task Counts",
         data: [taskCounts.todo, taskCounts.doing, taskCounts.done],
-        backgroundColor: ["#E074ED", "#B8ECED", "#ED74BD"],
-        borderColor: ["#E074ED", "#B8ECED", "#ED74BD"],
+        backgroundColor: ["#E074ED", "#ED74BD", "#B8ECED"],
+        borderColor: ["#E074ED", "#ED74BD", "#B8ECED"],
         borderWidth: 1,
       },
     ],
