@@ -41,7 +41,17 @@ const Task = ({ task, showDescription }) => {
       )}
 
       <button>
-        <Checkbox lineThrough color="secondary">
+        <Checkbox
+          lineThrough
+          color="secondary"
+          isSelected={task.state === "done"}
+          onChange={() =>
+            editTaskById({
+              ...task,
+              state: task.state === "done" ? "doing" : "done",
+            })
+          }
+        >
           <div className="relative z-10">
             <p>{task.title}</p>
           </div>

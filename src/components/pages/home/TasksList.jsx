@@ -2,7 +2,6 @@ import React from "react";
 import Task from "./Task";
 
 const TasksList = ({ tasks, showCompleted, showDescription }) => {
-  console.log(showCompleted);
   const filteredTasks = tasks.filter((task) => {
     if (showCompleted && task.state === "done") {
       return false;
