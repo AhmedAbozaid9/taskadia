@@ -4,6 +4,7 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Checkbox,
 } from "@nextui-org/react";
 import { Edit, EllipsisVertical, Trash } from "lucide-react";
 
@@ -26,7 +27,7 @@ const Task = ({ task, showDescription }) => {
   };
   return (
     <div
-      className={`group relative overflow-hidden border-2  px-4 py-8 rounded-xl transition-transform duration-300 ease-in-out hover:bg-scale-105 hover:shadow-lg`}
+      className={`group relative overflow-hidden border-2  px-4 sm:px-6 py-8 rounded-xl transition-transform duration-300 ease-in-out hover:bg-scale-105 hover:shadow-lg`}
     >
       {task.image && (
         <>
@@ -38,12 +39,17 @@ const Task = ({ task, showDescription }) => {
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40" />
         </>
       )}
-      <div className="relative z-10">
-        <p>{task.title}</p>
-        {showDescription && (
-          <p className="text-sm opacity-70">{task.description}</p>
+
+      <button>
+        <Checkbox lineThrough color="secondary">
+          <div className="relative z-10">
+            <p>{task.title}</p>
+          </div>
+        </Checkbox>
+        {showDescription && task.description && (
+          <p className="text-sm opacity-70 mt-2">{task.description}</p>
         )}
-      </div>
+      </button>
       <Dropdown className="bg-main-dark-bg" placement="bottom-end">
         <DropdownTrigger className="absolute top-3 right-4 z-30">
           <button className="focus:outline-none">
